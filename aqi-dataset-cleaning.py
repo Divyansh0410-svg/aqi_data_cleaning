@@ -10,12 +10,6 @@ aqi_data.info()
 
 print()
 
-# Check for missing values in the dataset
-print('Number of null values in each column:')
-print(aqi_data.isnull().sum().sort_values(ascending=False))
-
-print()
-
 #Checking for rows where average pollutant is 0
 zero_count=(aqi_data['pollutant_avg'] == 0).sum()
 print('Number of rows where average pollutant is 0: ', zero_count)
@@ -23,4 +17,12 @@ print('Number of rows where average pollutant is 0: ', zero_count)
 #Converting zero values in pollutant_avg column to NaN and than dropping those rows
 aqi_data['pollutant_avg'] = aqi_data['pollutant_avg'].replace(0, np.nan)
 aqi_data.dropna(subset=['pollutant_avg','pollutant_min','pollutant_max'], inplace=True)
+
+print()
+
+#Verification after dropping rows
+print('Total remaining rows: ', len(aqi_data))
+print()
+print('Number of null values in each column after dropping rows:')
+print(aqi_data.isnull().sum().sort_values(ascending=False))
     
