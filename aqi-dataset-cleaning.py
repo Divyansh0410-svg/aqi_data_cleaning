@@ -19,4 +19,8 @@ print()
 #Checking for rows where average pollutant is 0
 zero_count=(aqi_data['pollutant_avg'] == 0).sum()
 print('Number of rows where average pollutant is 0: ', zero_count)
+
+#Converting zero values in pollutant_avg column to NaN and than dropping those rows
+aqi_data['pollutant_avg'] = aqi_data['pollutant_avg'].replace(0, np.nan)
+aqi_data.dropna(subset=['pollutant_avg','pollutant_min','pollutant_max'], inplace=True)
     
