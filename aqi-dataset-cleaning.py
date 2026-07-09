@@ -83,3 +83,9 @@ print('State which recorded the highest pollution is',max_pollution_data['state'
 print('City which recorded the highest pollution is',max_pollution_data['city'])
 print('Station which recorded the highest pollution is',max_pollution_data['station'])
 print('Highest pollution recorded is',max_pollution_data['pollutant_max'])
+
+print()
+
+#Hourwise pollutant trend
+hourly_avg=pm25_states.groupby(pm25_states['last_update'].dt.hour)['pollutant_avg'].mean()
+print(hourly_avg)
