@@ -74,3 +74,12 @@ print(state_pm25.head(5))
 print('\n MOST FREQUENTLY TRACKED POLLUTANTS ARE: ')
 print(aqi_data['pollutant_id'].value_counts().head(3))
 
+print()
+
+#Highest pollution spike recorded 
+max_pollution_index= aqi_data['pollutant_max'].idxmax()
+max_pollution_data=aqi_data.loc[max_pollution_index]
+print('State which recorded the highest pollution is',max_pollution_data['state'])
+print('City which recorded the highest pollution is',max_pollution_data['city'])
+print('Station which recorded the highest pollution is',max_pollution_data['station'])
+print('Highest pollution recorded is',max_pollution_data['pollutant_max'])
