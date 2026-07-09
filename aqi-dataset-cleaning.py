@@ -32,4 +32,13 @@ for col in column_heads:
     leading=aqi_data[col].astype(str).str.startswith(' ').sum()
     tailing=aqi_data[col].astype(str).str.endswith(' ').sum()
     if leading>0 or tailing>0:
-        print('Column',col,'has',leading,'rows with space in front and',tailing,'rows with space at end')
+        print('Column',col,'has',leading,'rows with space in front and',tailing,'rows with space at end') 
+
+#Removing unwanted space from start and end in all string columns
+for col in column_heads:
+    aqi_data[col]=aqi_data[col].str.strip()
+
+#Verification after removing unwantes spaces
+leading=aqi_data['station'].astype(str).str.startswith(' ').sum()
+tailing=aqi_data['station'].astype(str).str.endswith(' ').sum()
+print('Column station','has',leading,'rows with space in front and',tailing,'rows with space at end')
