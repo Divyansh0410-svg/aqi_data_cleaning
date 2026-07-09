@@ -61,3 +61,6 @@ print()
 #Hourwise pollutant trend
 hourly_avg=pm25_states.groupby(pm25_states['last_update'].dt.hour)['pollutant_avg'].mean()
 print(hourly_avg)
+
+aqi_data.to_csv('AQI dataset cleaned.csv', index=False)
+print('Cleaned dataset saved in your file')
