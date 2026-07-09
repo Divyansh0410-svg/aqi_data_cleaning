@@ -48,3 +48,25 @@ aqi_data['last_update']= pd.to_datetime(aqi_data['last_update'], errors='coerce'
 #Dropping rows where timestamp and critical metrics is missing
 aqi_data.dropna(subset=['pollutant_max','pollutant_avg','pollutant_min','last_update'])
 
+# =====================================
+#   EXPLORATORY DATA ANALYSIS (EDA)
+# =====================================
+print('\n\t'+'='*40)
+print('\n\t\t AIR QUALITY INSIGHT REPORT')
+print('\n\t'+'='*40)
+
+print()
+
+#Top 5 most polluted states
+pm25_states=aqi_data[aqi_data['pollutant_id'] == 'PM2.5']
+
+#Performing analysis on states who has more than 10 monitoring stations
+value_pm25=pm25_states['state'].value_counts()
+valid_state=value_pm25[value_pm25>=10].index
+
+filtered_state=pm25_states[pm25_states['state'].isin(valid_state)]
+
+state_pm25= filtered_state.groupby('state')['pollutant_avg'].mean().sort_values(ascending=False)
+print('TOP 5 MOST POLLUTED STATES OF INDIA ARE: ')
+print(state_pm25.head(5))
+
