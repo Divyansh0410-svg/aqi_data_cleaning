@@ -25,4 +25,11 @@ print('Total remaining rows: ', len(aqi_data))
 print()
 print('Number of null values in each column after dropping rows:')
 print(aqi_data.isnull().sum().sort_values(ascending=False))
-    
+
+#Detecting unwanted space in columns
+column_heads=['country','state','city','station','pollutant_id']
+for col in column_heads:
+    leading=aqi_data[col].astype(str).str.startswith(' ').sum()
+    tailing=aqi_data[col].astype(str).str.endswith(' ').sum()
+    if leading>0 or tailing>0:
+        print('Column',col,'has',leading,'rows with space in front and',tailing,'rows with space at end')
