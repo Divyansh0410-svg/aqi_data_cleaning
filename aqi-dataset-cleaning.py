@@ -70,3 +70,7 @@ state_pm25= filtered_state.groupby('state')['pollutant_avg'].mean().sort_values(
 print('TOP 5 MOST POLLUTED STATES OF INDIA ARE: ')
 print(state_pm25.head(5))
 
+#Most Tracked pollutants in dataset
+print('\n MOST FREQUENTLY TRACKED POLLUTANTS ARE: ')
+print(aqi_data['pollutant_id'].value_counts().head(3))
+
